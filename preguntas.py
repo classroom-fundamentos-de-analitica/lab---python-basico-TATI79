@@ -11,17 +11,33 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
+import csv
+with open('data.csv','r', encoding='UTF-8') as data:
+ent=csv.reader(data,delimiter=' ')
+lista=list(ent)
+print(lista)
+
+ldef=[]
+for linea in lista:
+    a=linea[0].split('\t')
+ldef.append(a)
 
 
 def pregunta_01():
     """
     Retorne la suma de la segunda columna.
 
+
+
     Rta/
     214
 
     """
-    return
+    Sum=0
+    for i in ldef:
+        Sum= suma+int(i[1])
+    return Sum
+
 
 
 def pregunta_02():
