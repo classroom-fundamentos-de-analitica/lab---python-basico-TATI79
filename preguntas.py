@@ -123,7 +123,19 @@ def pregunta_04():
     ]
 
     """
-    return
+    for line in file:
+            line = line.replace("\n","")
+            line = line.replace("\t",",")
+            line = line.split(",")
+            suma = line[2]
+            suma = suma.split("-")
+            suma = suma[1]
+            if suma in dicc:
+                dicc[suma] = dicc[suma] + 1
+            else: 
+                dicc[suma] = 1
+    dicc = sorted(dicc.items())
+    return dicc
 
 
 def pregunta_05():
@@ -141,7 +153,24 @@ def pregunta_05():
     ]
 
     """
-    return
+    for line in file:
+            line = line.replace("\n","")
+            line = line.replace("\t",",")
+            line = line.split(",")
+            numero = line[1]
+            linea1 = line[0]
+            if linea1 in dicc:
+                dicc[linea1].append(numero)
+            else: dicc[linea1] = [numero]
+    lista3=[]
+    lista4=[]
+    for key in dicc:  
+        dicc[key] = [max(dicc[key]), min(dicc[key])]
+    
+    lista3 = sorted(dicc.items())
+    for value in lista3:
+        lista4.append((value[0], int(value[1][0]), int(value[1][1])))
+    return lista4
 
 
 def pregunta_06():
@@ -166,7 +195,24 @@ def pregunta_06():
     ]
 
     """
-    return
+    for line in file:
+            line = line.replace("\n","")
+            line = line.replace("\t",",")
+            for caracter in line.split(','):
+                if caracter.count(':') > 0:
+                    if caracter[:3] in dicc:
+                        dicc[caracter[:3]].append(int(caracter[4:]))
+                    else: 
+                        dicc[caracter[:3]] = [int(caracter[4:])]
+
+    for key, value in dicc.items():
+        dicc[key] = [int(min(value)),int(max(value))]
+    lista3 = sorted(dicc.items())
+    
+    lista4 = []
+    for value in lst:
+        lista4.append((value[0], int(value[1][0]), int(value[1][1])))
+    return lista4
 
 
 def pregunta_07():
@@ -190,7 +236,25 @@ def pregunta_07():
     ]
 
     """
-    return
+     dicc2 ={}
+    with open("data.csv") as file:
+        for line in file:
+            line = line.replace("\n","")
+            line = line.replace("\t",",")
+            line = line.split(",")
+            numero = line[1]
+            linea1 = line[0]
+
+            if numero in dicc2:
+                dicc2[numero].append(linea1)
+            else: dicc2[numero] = [linea1] 
+
+    lista3 = sorted(dicc2.items())
+
+    lista4 = []
+    for value in lista3:
+        lista4.append((int(value[0]),value[1]))
+    return lista4
 
 
 def pregunta_08():
@@ -215,7 +279,30 @@ def pregunta_08():
     ]
 
     """
-    return
+     dicc2 ={}
+    with open("data.csv") as file:
+        for line in file:
+            line = line.replace("\n","")
+            line = line.replace("\t",",")
+            line = line.split(",")
+            numero = line[1]
+            linea1 = line[0]
+
+            if numero in dicc2:
+                if linea1 in dicc2[numero]:
+                    continue
+                else: dicc2[numero].append(linea1)
+            else: dicc2[numero] = [linea1] 
+
+    for key, value in dicc.items():
+        dicc[key] = (sorted(value))
+    lista3 = sorted(dicc2.items())
+
+    lista4 = []
+    for value in lista3:
+        lista4.append((int(value[0]),value[1]))
+
+    return lista4
 
 
 def pregunta_09():
