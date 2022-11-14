@@ -12,7 +12,7 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 """
 import csv
-with open('data.csv','r', encoding='UTF-8') as data:
+with open('data.csv','r',encoding='UTF-8') as data:
 ent=csv.reader(data,delimiter=' ')
 lista=list(ent)
 print(lista)
@@ -35,7 +35,7 @@ def pregunta_01():
     """
     Sum=0
     for i in ldef:
-        Sum= suma+int(i[1])
+        Sum=suma+int(i[1])
     return Sum
 
 
@@ -55,7 +55,17 @@ def pregunta_02():
     ]
 
     """
-    return
+    lista2=[]
+    for i in ldef: 
+        lista2.append(i[0])
+        listaaa=[]
+        listaaa.append(("A",lista2.count("A")))
+        listaaa.append(("B",lista2.count("B")))
+        listaaa.append(("C",lista2.count("C")))
+        listaaa.append(("D",lista2.count("D")))
+        listaaa.append(("E",lista2.count("E")))
+        
+    return listaaa
 
 
 def pregunta_03():
@@ -73,7 +83,22 @@ def pregunta_03():
     ]
 
     """
-    return
+    dicc={}
+    with open("data.csv") as file:
+        for line in file:
+           line= line.replace("\n","")
+           line= line.replace("\t","")
+           line= line.split(",")
+           linea1= line[0]
+            linea2= line[1]
+            if linea 1 in dicc:
+                dicc[linea1]= int(dicc[linea1])+int(linea2)
+                
+            else:
+                dicc[linea1] = linea2
+    dicc= sorted(dicc.items())
+    return dicc
+
 
 
 def pregunta_04():
