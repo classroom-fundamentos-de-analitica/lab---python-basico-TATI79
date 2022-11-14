@@ -325,7 +325,22 @@ def pregunta_09():
     }
 
     """
-    return
+    dicc ={}
+    with open("data.csv") as file:
+        for line in file:
+            line = line.replace("\n","")
+            line = line.replace("\t",",")
+            for caracter in line.split(','):
+                if caracter.count(':') > 0:
+                    if caracter[:3] in dicc:
+                        dicc[caracter[:3]] +=1
+                    else: 
+                        dicc[caracter[:3]] = 1
+
+
+    registros = dict((k,v) for k,v in sorted(dicc.items()))
+
+    return registros
 
 
 def pregunta_10():
@@ -346,7 +361,16 @@ def pregunta_10():
 
 
     """
-    return
+    lista3 =[]
+    with open("data.csv") as file:
+        for line in file:
+            line = line.replace("\n","")
+            line = line.split("\t")
+            linea1 = line[0]
+            col4= line[3].count(',')+1
+            col5= line[4].count(',')+1
+            lista3.append((linea1, col4, col5))
+    return lista3
 
 
 def pregunta_11():
@@ -367,7 +391,23 @@ def pregunta_11():
 
 
     """
-    return
+    dicc = {}
+    with open("data.csv") as file:
+        for line in file:
+            line = line.replace("\n","")
+            line = line.split("\t")
+            col2 = int(line[1])
+            col4 = line[3]
+            for letra in col4.split(','):
+                if letra in dicc.keys():
+                    dicc[letra] += col2
+                else: dicc[letra] = col2
+    lista3 = sorted(dicc.items())
+    dic_= {}
+
+    for item in lista3:
+        dic_[item[0]] = item[1]
+    return dic_
 
 
 def pregunta_12():
@@ -385,4 +425,24 @@ def pregunta_12():
     }
 
     """
-    return
+    dicc = {}
+    with open("data.csv") as file:
+        for line in file:
+            line = line.replace("\n","")
+            line = line.split("\t")
+            col_1 = line[0]
+            col_5 = line[4]
+            col_5 = col_5.replace(":",",").split(",")
+            i = 0
+            number = 0
+            for valor in col_5:
+                if valor.isnumeric() == True: number = numero + int(valor)
+
+            if col_1 in dicc:
+                dicc[col_1] += number
+            else: dicc[col_1] = number
+    
+    abc = {}
+    lista3 = sorted(dicc.items())
+    for valor in lista3: abc[valor[0]]=valor[1]
+    return abc
